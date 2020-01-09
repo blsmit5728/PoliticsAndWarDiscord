@@ -1,0 +1,5 @@
+asyncio
+pyyaml
+requests
+discord.py
+
