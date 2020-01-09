@@ -1,0 +1,4 @@
+# Config.yml
+discord-token: 'my_discord_bot_token'
+api-key: 'p&w-api-key'
+admin: [<uid-discord-admin>,...]
