@@ -1,6 +1,5 @@
 import discord
 import asyncio
-import MySQLdb
 import datetime
 import json
 import yaml
@@ -134,6 +133,24 @@ async def getLastTrades(ctx, *args):
         except:
             await ctx.channel.send("Message too long")
             
+@bot.command(pass_context=True)
+async def getAllianceBank(ctx, *args):
+    if len(args) != 1:
+        await ctx.channel.send("No alliance ID provided")
+    else:
+        url = "http://politicsandwar.com/api/alliance-bank/?allianceid={}&key={}".format(args[0], API_KEY)
+        print(url)
+        fetchedData = requests.get(url)
+        fetchedData = fetchedData.json()    
+        msg = ""
+        for key in fetchedData['alliance_bank_contents']:
+            print(key)
+            for k in key:
+                msg = msg + k + ' : ' + str(key[k]) + '\n'
+        try:
+            await ctx.channel.send(msg)
+        except:
+            await ctx.channel.send("Message too long")
             
 @bot.command(pass_context=True)
 async def help(ctx, *args):
